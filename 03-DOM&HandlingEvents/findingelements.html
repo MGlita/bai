@@ -1,6 +1,9 @@
 <html>
 
 <head>
+        <script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+        </script>
     <title>Finding elements</title>
 </head>
 
@@ -11,8 +14,16 @@
     <p>Find elements by tag name</p>
 
     <script>
-        // a JavaScript code here ...
+        $(document).ready(function(){
+            let h1 = $("h1");
+            console.log($("h1").html());
+            console.log($("#someTest").html());
+            console.log($(".important").html());
+            $("p").each(function( index ) {
+                console.log($(this).html()+ "\n");
+            });
 
+            });
     </script>
 </body>
 

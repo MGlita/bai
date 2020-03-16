@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+<head> 
+	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+	</script>
 	<title>Fill in a form</title>
 	<meta charset="UTF-8">
 </head>
@@ -9,16 +12,19 @@
 <body>
 	<h1>Filling in a form</h1>
 	<form>
-		<p>University:<br><input type="text"></p>
-		<p>Address:<br><input type="text"></p>
-		<button type="button">Hint</button>
+		<p>University:<br><input id="uni" type="text"></p>
+		<p>Address:<br><input id="add" type="text"></p>
+		<button id="btn" type="button">Hint</button>
 	</form>
 
 	<script>
 		// a JavaScript code here ...
 		var university = "Cracow University of Economics";
 		var address = "Rakowicka 27, Krakow, POLAND";
-
+		$("#btn").click(function () {
+            $("#uni").val(university);
+            $("#add").val(address);
+        });
 	</script>
 </body>
 

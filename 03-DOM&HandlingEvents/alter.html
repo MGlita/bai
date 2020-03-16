@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html>
 	<head>
+			<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+			</script>
 		<title>Pink Floyd</title>
 		<meta charset="UTF-8">
 	</head>
 	<body>
 		<h1>Another Brick in the Wall</h1>
 		<h3>Pink Floyd</h3>
-		<p>We don't need no education<br>
+		<p id="lyrics">We don't need no education<br>
 		We don't need no thought control<br>
 		No dark sarcasm in the classroom<br>
 		Teachers leave them kids alone<br>
@@ -15,13 +18,39 @@
 		All in all it's just another brick in the wall<br>
 		All in all you're just another brick in the wall</p>
 		
-		<p style="visibility: hidden;">Pink Floyd were an English rock band formed in London.<br>
+		<p id="desc" style="visibility: hidden;">Pink Floyd were an English rock band formed in London.<br>
 		They achieved international acclaim with their progressive<br>
 		and psychedelic music.</p>
-		
+		<div id="imagediv"></div>
 		<script>
-			// a JavaScript code here ...
+		let h1 = true;		
+		let img2 = true;	
+			$("h1").click(function () {
+				if(h1)
+				$(this).append(" Part 2");
+				h1=false;
+			});
+			$("h3").click(function () {
+				$("#desc").css("visibility","visible");
+			});
 			
+			$("#lyrics").click(function () {
+				$(this).css("font-style","italic");
+			});
+			$("body").dblclick(function () {
+				$(this).css("background-color","yellow");
+			});
+			$("#lyrics").bind('copy', function() {
+				alert('Copyright message!')
+			});
+			$("#desc").click(function () {
+				if(img2){
+				var img = $('<img id="dynamic">');
+				img.attr('src', 'https://upload.wikimedia.org/wikipedia/en/d/d6/Pink_Floyd_-_all_members.jpg');
+				img.appendTo('#imagediv');
+				img2=false;
+				}
+			}); 
 		</script>
 	</body>
 </html>
