@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <script>
+            const myArr = new Array(10).fill();
+
+            const fillRandomVals = function(arr, min, max) {
+              return arr.map(() => Math.floor(Math.random() * (max - min)) + min);
+            };
+
+            console.log(fillRandomVals(myArr, 5, 20));
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>
