@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>PeopleList</title>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<h1>People</h1>
+		<p>Open a console and then click the button</p>
+		<input type="button" onclick="displayName()" value="Display list of people">
+		<p id="personalData"></p>
+
+		<script>
+			function readTextFile(file, callback) {
+				var rawFile = new XMLHttpRequest();
+				rawFile.overrideMimeType("application/json");
+				rawFile.open("GET", file, true);
+				rawFile.onreadystatechange = function() {
+					if (rawFile.readyState === 4 && rawFile.status == "200") {
+						callback(rawFile.responseText);
+					}
+				}
+				rawFile.send(null);
+            }
+            function displayName() {
+				readTextFile("https://gist.githubusercontent.com/MGlita/71963e3bceafe09597a4f26f3ca56bb3/raw/5e27e87f3a5b4e4f4739f904382d2f0e4603945d/people.json", function(text){
+					var data = JSON.parse(text);
+                    console.log(data);
+					data.forEach(function(elem,index) {
+                        var textnode = document.createTextNode(index+1+". "+elem.name + " " + elem.surname + " " + elem.age + " " + elem.country + " " + elem.email); 
+                        var node=document.createElement("BR")
+						document.getElementById("personalData").appendChild(textnode);
+						document.getElementById("personalData").appendChild(node);
+					});
+				});
+            }
+            
+		</script>
+
+	</body>
+</html>

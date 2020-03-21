@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 	<head>
 		<title>Student</title>
@@ -7,11 +7,30 @@
 	<body>
 		<h1>Student</h1>
 		<p>Open a console and then click the button</p>
-		<input type="button" value="Display student's data">
+		<input type="button" onclick="displayName()" value="Display student's data">
 		<p id="personalData"></p>
 
 		<script>
-
+			function readTextFile(file, callback) {
+				var rawFile = new XMLHttpRequest();
+				rawFile.overrideMimeType("application/json");
+				rawFile.open("GET", file, true);
+				rawFile.onreadystatechange = function() {
+					if (rawFile.readyState === 4 && rawFile.status == "200") {
+						callback(rawFile.responseText);
+					}
+				}
+				rawFile.send(null);
+            }
+            function displayName() {
+				readTextFile("https://gist.githubusercontent.com/MGlita/4c9d5f0123838407f06079da2f0f2508/raw/9446934204944fa6369c11622428f7f0da8cfab3/name.json", function(text){
+					var data = JSON.parse(text);
+                    console.log(data[0]);
+					var textnode = document.createTextNode(data[0].name + " " + data[0].surname); 
+					document.getElementById("personalData").appendChild(textnode);
+				});
+            }
+            
 		</script>
 
 	</body>

@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Currency</title>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<h1>Currency Rates</h1>
+		<p>Open a console and then click the button</p>
+		<input type="button" onclick="displayName()" value="Refresh">
+		<p id="eur">Euro: </p>
+		<p id="dol">Dolar: </p>
+		<p id="gbp">Funt: </p>
+
+
+		<script>
+			function readTextFile(file, callback) {
+				var rawFile = new XMLHttpRequest();
+				rawFile.overrideMimeType("application/json");
+				rawFile.open("GET", file, true);
+				rawFile.onreadystatechange = function () {
+					if (rawFile.readyState === 4 && rawFile.status == "200") {
+						callback(rawFile.responseText);
+					}
+				}
+				rawFile.send(null);
+            }
+            function addHtml(id, rateId, data) {
+				var textnode = document.createTextNode(data[0].rates[rateId].mid);
+					document.getElementById(id).appendChild(textnode);
+            }
+			function displayName() {
+				readTextFile("http://api.nbp.pl/api/exchangerates/tables/A/", function (text) {
+					var data = JSON.parse(text);
+                    console.log(data[0].rates[1]);
+					console.log(data[0].rates[7]);
+					console.log(data[0].rates[10]);
+                    addHtml("eur", 7,data);
+                    addHtml("dol", 1,data);
+                    addHtml("gbp", 10,data);
+				});
+			}
+
+		</script>
+
+	</body>
+</html>
