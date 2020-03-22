@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Gold</title>
+		<script src="https://d3js.org/d3.v5.min.js"></script>
+
+		<!-- Step 2) Load billboard.js with style -->
+		<script src="billboard.js"></script>
+
+		<!-- Load with base style -->
+		<!--<link rel="stylesheet" href="billboard.css">
+
+		 Or load different theme style 
+		<link rel="stylesheet" href="$YOUR_PATH/theme/insight.css">-->
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<h1>Gold chart</h1><br />
+
+		<div id="chart"></div>
+
+		<script>
+            const xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = display;
+			xhr.open('GET', 'http://api.nbp.pl/api/cenyzlota/last/10');
+            xhr.send();
+            function display() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    let data = JSON.parse(xhr.response);
+                    console.log(data);
+                    bb.generate({
+                        bindto: "#chart",
+                        data: {
+                            x: "x",
+                            columns: [
+                                ["x",1,2,3,4,5,6,7,8,9,0],
+                                ["Price", data[0].cena,data[1].cena,data[2].cena,data[3].cena,data[4].cena,data[5].cena,data[6].cena,data[7].cena,data[8].cena,data[9].cena]
+                                
+                            ]
+                        },
+                        axis: {
+                            x: {
+                              tick: {
+                                culling: false
+                              }
+                            }
+                          }
+                    });
+                }
+            }
+            
+		</script>
+
+	</body>
+</html>
