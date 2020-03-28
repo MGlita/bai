@@ -6,15 +6,28 @@
 <body>
   <h1>Grades</h1>    
 
+  <div id="app">
+    <b>Receipt</b><br>
+    <p>--------------</p>
+    <p>Product: {{product.name}}</p>
+    <p>Unit Price: {{product.unitPrice}}</p>
+    <p>Quantity: {{product.quantity}}</p>
+    <p>Amount: {{product.amount}}</p>
+    <p>VAT Tax Rate: {{product.VAT}}</p>
+    <p>==============</p>
+    <p><b>Total: {{product.total.toFixed(2)}}</b></p>
+  </div>
   <script>
     var app = new Vue({
       el: '#app',
       data: {
         product: {
           name: 'book',
-          unitPrice: 17.5,
+          unitPrice: 17,
           quantity: 3,
-          VAT: 23
+          VAT: 23,
+          amount: 17*3,
+          total: 17*3+17*3*0.23,
         }
       }
     });
