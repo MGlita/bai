@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+    
+</head>
+<body>
+  <div id="app">
+    <film name="A Fistful of Dollars" director="Sergio Leone" production='1964'></film>
+    <film name="For a Few Dollars More" director="Sergio Leone" production='1965'></film>
+    <film name="The Good, the Bad and the Ugly" director="Sergio Leone" production='1966'></film>
+  </div>
+  
+  <script type="text/x-template" id="film-template">
+    <div>
+      <b>
+        <p>{{name}}</p>
+        <p>{{director}}</p>
+        <p>{{production}}</p>
+      </b>
+      <br>
+    </div>
+    
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      Vue.component('film',{
+        template: '#film-template',
+        props: {
+            name: String,
+            director: String,
+            production: String }
+    })
+
+    new Vue({
+        el: '#app'
+    })
+    </script>
+</body>
+  
+</html>

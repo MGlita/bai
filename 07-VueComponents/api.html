@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+    
+</head>
+<body>
+  <div id="app">
+    <api></api>
+  </div>
+  
+  <script type="text/x-template" id="api-template">
+    <div>
+      <h1>Kurs Euro</h1>
+        <p>1 EUR = {{pln}} PLN</p>
+    </div>
+    
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      Vue.component('api',{
+      template: '#api-template',
+        data(){
+            return{
+                pln:''
+            }
+        },
+        beforeCreate(){
+          const setFact = (data) => { this.pln = data; };
+          const request = new XMLHttpRequest();
+          request.onreadystatechange = onReady;
+          request.responseType = 'json';
+          request.open('GET', 'https://api.exchangeratesapi.io/latest');
+          request.send();
+          
+          function onReady() {
+            if (this.readyState === 4 && this.status === 200) {
+              const data = this.response.rates['PLN'];
+              setFact(data);
+              console.log(data);
+          }
+          }
+        }
+    })
+
+    new Vue({
+        el: '#app'
+    })
+    </script>
+</body>
+  
+</html>

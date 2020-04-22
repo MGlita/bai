@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+    
+</head>
+<body>
+  <h1>Decimal to binary conversion</h1>
+  <div id="app">
+    <binary v-for="num in numbers" :value="num"></binary>
+  </div>
+
+  <script type="text/x-template" id="binary-template">
+    <div>
+        <p>{{value}} (10) = {{conversion}} (2)</p>
+    </div>
+    
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      Vue.component('binary',{
+        template: '#binary-template',
+        props: {
+            value: Number},
+        computed: {
+            conversion: function() {
+                return this.value.toString(2);
+            }
+        }
+    })
+
+    new Vue({
+        el: '#app',
+        data: {
+            numbers: [8, 170, 204, 3855],
+        }
+    })
+    </script>
+</body>
+  
+</html>
